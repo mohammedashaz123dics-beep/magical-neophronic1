@@ -1,0 +1,52 @@
+{
+  "name": "Testimonial",
+  "type": "object",
+  "properties": {
+    "client_name": {
+      "type": "string",
+      "title": "Name"
+    },
+    "role": {
+      "type": "string",
+      "title": "Role / Affiliation"
+    },
+    "quote": {
+      "type": "string",
+      "title": "Quote"
+    },
+    "rating": {
+      "type": "number",
+      "title": "Rating (1-5)"
+    },
+    "property_type": {
+      "type": "string",
+      "title": "Legacy: Category"
+    },
+    "location": {
+      "type": "string",
+      "title": "Legacy: Location"
+    }
+  },
+  "required": [
+    "client_name",
+    "quote"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

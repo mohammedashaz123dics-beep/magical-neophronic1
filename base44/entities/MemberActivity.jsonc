@@ -1,0 +1,49 @@
+{
+  "name": "MemberActivity",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "title": "User ID"
+    },
+    "user_name": {
+      "type": "string",
+      "title": "Member"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "visit"
+      ],
+      "title": "Action"
+    },
+    "page": {
+      "type": "string",
+      "title": "Page"
+    },
+    "points": {
+      "type": "number",
+      "title": "Points"
+    }
+  },
+  "required": [
+    "user_id",
+    "points"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

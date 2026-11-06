@@ -1,0 +1,60 @@
+{
+  "name": "MemberProfile",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "title": "Member ID"
+    },
+    "display_name": {
+      "type": "string",
+      "title": "Display Name"
+    },
+    "photo": {
+      "type": "string",
+      "title": "Photo URL"
+    },
+    "headline": {
+      "type": "string",
+      "title": "Headline"
+    },
+    "bio": {
+      "type": "string",
+      "title": "Bio"
+    }
+  },
+  "required": [
+    "user_id",
+    "display_name"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "$and": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.user_id": "{{user.id}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
